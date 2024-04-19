@@ -13,18 +13,11 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Review extends BaseModel {
-
-
     @Column(nullable =false)
     private String Content;
-
     private Double rating;
-
-
-
-
-
     @Override
     public String toString(){
         return this.Content +" "+this.rating+" ";

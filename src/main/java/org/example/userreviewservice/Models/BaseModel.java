@@ -13,12 +13,9 @@ import java.util.Date;
 @Getter
 @Setter
 public abstract class BaseModel {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     protected Long id;
-
-
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
