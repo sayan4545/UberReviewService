@@ -13,30 +13,20 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+public class Review extends BaseModel {
 
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable =false)
     private String Content;
 
     private Double rating;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
 
-    private Date createdAt;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
+
 
     @Override
     public String toString(){
-        return this.Content +" "+this.rating+" "+this.createdAt;
+        return this.Content +" "+this.rating+" ";
     }
 }

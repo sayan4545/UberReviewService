@@ -1,4 +1,5 @@
 package org.example.userreviewservice.services;
+import org.example.userreviewservice.Models.BaseModel;
 import org.example.userreviewservice.Models.Review;
 import org.example.userreviewservice.repositories.ReviewRepositories;
 import org.springframework.boot.CommandLineRunner;
@@ -15,23 +16,13 @@ public class ReviewService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("***************************");
-
-//        Review r = Review.builder()
-//                .Content("Amazing ride quality")
-//                .rating(5.0)
-//                .createdAt(new Date())
-//                .updatedAt(new Date())
-//                .build();
-//
+//        Review r = Review.builder().Content("Satisfactory").rating(3.0).build();
 //        repositories.save(r);
 //        Review r1 = Review.builder()
-//                .Content("Average")
-//                .rating(4.0)
-//                .createdAt(new Date())
-//                .updatedAt(new Date())
+//                .Content("Below Average")
+//                .rating(2.0)
 //                .build();
 //        repositories.save(r1);
-
 //        Review r2 = Review.builder()
 //                .Content("Wait time long")
 //                .rating(3.0)
@@ -39,8 +30,6 @@ public class ReviewService implements CommandLineRunner {
 //                .updatedAt(new Date())
 //                .build();
 //        repositories.save(r2);
-
-        List<Review> review_list = new ArrayList<>();
 //        review_list.add(Review.builder()
 //                .Content("Great booking")
 //                .rating(5.0)
@@ -54,12 +43,18 @@ public class ReviewService implements CommandLineRunner {
 //                .updatedAt(new Date())
 //                .build());
 //        repositories.saveAll(review_list);
-        review_list.add(Review.builder()
-                .Content("Very good service")
-                .rating(4.5)
-                .createdAt(new Date())
-                .updatedAt(new Date())
-                .build());
-        repositories.saveAll(review_list);
+//        review_list.add(Review.builder()
+//                .Content("Very good service")
+//                .rating(4.5)
+//                .createdAt(new Date())
+//                .updatedAt(new Date())
+//                .build());
+//        repositories.saveAll(review_list);
+
+        List<Review> reviews = repositories.findAll();
+        for(Review review : reviews){
+            System.out.println(review.getRating());
+        }
+        repositories.deleteById(2l);
     }
 }
