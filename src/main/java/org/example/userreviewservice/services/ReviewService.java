@@ -56,5 +56,12 @@ public class ReviewService implements CommandLineRunner {
 //            System.out.println(review.getRating());
 //        }
 //        repositories.deleteById(2l);
+        Review r = Review.builder()
+                .Content("Average ride quality")
+                .rating(3.0).build();
+
+        repositories.save(r);
+
+
     }
 }
