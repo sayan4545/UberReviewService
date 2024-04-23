@@ -57,8 +57,8 @@ public class ReviewService implements CommandLineRunner {
 //        }
 //        repositories.deleteById(2l);
         Review r = Review.builder()
-                .Content("Great")
-                .rating(5.0).build();
+                .Content("ok")
+                .rating(4.0).build();
 
         repositories.save(r);
 
