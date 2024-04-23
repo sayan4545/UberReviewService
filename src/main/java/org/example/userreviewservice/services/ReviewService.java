@@ -55,12 +55,12 @@ public class ReviewService implements CommandLineRunner {
 //        for(Review review : reviews){
 //            System.out.println(review.getRating());
 //        }
-//        repositories.deleteById(2l);
-//        Review r = Review.builder()
-//                .Content("no service")
-//                .rating(0.0).build();
+
+        Review r = Review.builder()
+                .Content("Worst")
+                .rating(2.0).build();
 //
-//        repositories.save(r);
+        repositories.save(r);
 
 
     }
