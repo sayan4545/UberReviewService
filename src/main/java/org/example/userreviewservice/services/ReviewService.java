@@ -1,6 +1,9 @@
 package org.example.userreviewservice.services;
 import org.example.userreviewservice.Models.BaseModel;
+import org.example.userreviewservice.Models.Booking;
+import org.example.userreviewservice.Models.BookingStatus;
 import org.example.userreviewservice.Models.Review;
+import org.example.userreviewservice.repositories.BookingRepository;
 import org.example.userreviewservice.repositories.ReviewRepositories;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
@@ -9,9 +12,11 @@ import java.util.Date;
 import java.util.List;
 @Service
 public class ReviewService implements CommandLineRunner {
-     ReviewRepositories repositories;
-    public ReviewService(ReviewRepositories repositories){
+    BookingRepository bookingRepository;
+    ReviewRepositories repositories;
+    public ReviewService(ReviewRepositories repositories, BookingRepository bookingRepository){
         this.repositories=repositories;
+        this.bookingRepository = bookingRepository;
     }
     @Override
     public void run(String... args) throws Exception {
@@ -57,10 +62,21 @@ public class ReviewService implements CommandLineRunner {
 //        }
 
         Review r = Review.builder()
-                .Content("Worst")
-                .rating(2.0).build();
+                .Content("Amazing ride")
+                .rating(5.0).build();
+
+        Booking b = Booking.builder()
+                .startTime(new Date())
+                        .review(r)
+                                .endTime(new Date())
+                                        .bookingStatus(BookingStatus.COMPLETED)
+                                                .totalDistance(10l)
+                                                        .build();
+
 //
         repositories.save(r);
+
+        bookingRepository.save(b);
 
 
     }
