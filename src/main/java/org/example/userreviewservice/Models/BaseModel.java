@@ -20,7 +20,6 @@ public abstract class BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     protected Date createdAt;
-
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate

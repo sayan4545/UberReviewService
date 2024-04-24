@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ReviewService implements CommandLineRunner {
     BookingRepository bookingRepository;
@@ -61,22 +63,28 @@ public class ReviewService implements CommandLineRunner {
 //            System.out.println(review.getRating());
 //        }
 
-        Review r = Review.builder()
-                .Content("Amazing ride")
-                .rating(5.0).build();
-
-        Booking b = Booking.builder()
-                .startTime(new Date())
-                        .review(r)
-                                .endTime(new Date())
-                                        .bookingStatus(BookingStatus.COMPLETED)
-                                                .totalDistance(10l)
-                                                        .build();
-
+//        Review r = Review.builder()
+//                .Content("Great ride")
+//                .rating(5.0).build();
 //
-        repositories.save(r);
+//        Booking b = Booking.builder()
+//                .startTime(new Date())
+//                        .review(r)
+//                                .endTime(new Date())
+//                                        .bookingStatus(BookingStatus.COMPLETED)
+//                                                .totalDistance(5l)
+//                                                        .build();
 
-        bookingRepository.save(b);
+
+        Optional<Booking> b = bookingRepository.findById(2l);
+        if(b.isPresent()){
+            bookingRepository.delete(b.get());
+        }
+
+
+        //repositories.save(r);
+
+        //bookingRepository.save(b);
 
 
     }
