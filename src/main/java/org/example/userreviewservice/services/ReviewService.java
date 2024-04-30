@@ -76,10 +76,10 @@ public class ReviewService implements CommandLineRunner {
 //                                                        .build();
 
 
-        Optional<Booking> b = bookingRepository.findById(2l);
-        if(b.isPresent()){
-            bookingRepository.delete(b.get());
-        }
+//        Optional<Booking> b = bookingRepository.findById(2l);
+//        if(b.isPresent()){
+//            bookingRepository.delete(b.get());
+//        }
 
 
         //repositories.save(r);
