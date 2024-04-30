@@ -14,8 +14,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class Driver extends BaseModel{
 
+    @Column(nullable = false)
     private String driverName;
 
     @Column(nullable = false,unique = true)
@@ -23,5 +25,4 @@ public class Driver extends BaseModel{
 
     @OneToMany(mappedBy = "driver")
     private List<Booking> bookings = new ArrayList<>();
-
 }

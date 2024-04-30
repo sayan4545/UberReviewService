@@ -1,8 +1,5 @@
 package org.example.userreviewservice.services;
-import org.example.userreviewservice.Models.BaseModel;
-import org.example.userreviewservice.Models.Booking;
-import org.example.userreviewservice.Models.BookingStatus;
-import org.example.userreviewservice.Models.Review;
+import org.example.userreviewservice.Models.*;
 import org.example.userreviewservice.repositories.BookingRepository;
 import org.example.userreviewservice.repositories.ReviewRepositories;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +20,20 @@ public class ReviewService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("***************************");
+
+//        Review r = Review.builder()
+//                .rating(4.0)
+//                .Content("Good One")
+//                .build();
+//
+//        Booking b = Booking.builder()
+//                .endTime(new Date())
+//                .startTime(new Date())
+//                .totalDistance(4l)
+//                .review(r)
+//                .build();
+        
+
 //        Review r = Review.builder().Content("Satisfactory").rating(3.0).build();
 //        repositories.save(r);
 //        Review r1 = Review.builder()
