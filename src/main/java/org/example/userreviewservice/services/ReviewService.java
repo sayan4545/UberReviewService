@@ -102,6 +102,10 @@ public class ReviewService implements CommandLineRunner {
         Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1l,"WB6798XC");
         if(driver.isPresent()){
             System.out.println(driver.get().getDriverName()+ " "+ driver.get().getLicenseNumber());
+            List<Booking> bookings = bookingRepository.findAllByDriverId(1l);
+            for(Booking booking:bookings){
+                System.out.println(booking.getBookingStatus());
+            }
         }
 
 
