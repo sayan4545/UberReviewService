@@ -1,6 +1,7 @@
 package org.example.userreviewservice.services;
 import org.example.userreviewservice.Models.*;
 import org.example.userreviewservice.repositories.BookingRepository;
+import org.example.userreviewservice.repositories.DriverRepository;
 import org.example.userreviewservice.repositories.ReviewRepositories;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,17 @@ import java.util.Optional;
 
 @Service
 public class ReviewService implements CommandLineRunner {
+    private final DriverRepository driverRepository;
     BookingRepository bookingRepository;
     ReviewRepositories repositories;
-    public ReviewService(ReviewRepositories repositories, BookingRepository bookingRepository){
+    public ReviewService(ReviewRepositories repositories, BookingRepository bookingRepository, DriverRepository driverRepository){
         this.repositories=repositories;
         this.bookingRepository = bookingRepository;
+        this.driverRepository = driverRepository;
     }
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("***************************");
+        System.out.println("STARTED SUCCESSFULLY");
 
 //        Review r = Review.builder()
 //                .rating(4.0)
@@ -96,6 +99,10 @@ public class ReviewService implements CommandLineRunner {
         //repositories.save(r);
 
         //bookingRepository.save(b);
+        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1l,"WB6798XC");
+        if(driver.isPresent()){
+            System.out.println(driver.get().getDriverName()+ " "+ driver.get().getLicenseNumber());
+        }
 
 
     }

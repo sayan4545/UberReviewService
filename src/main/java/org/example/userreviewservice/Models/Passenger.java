@@ -17,8 +17,7 @@ import java.util.List;
 public class Passenger extends BaseModel{
 
     private String PassengerName;
-
     @OneToMany(mappedBy = "passenger")
-
     private List<Booking> passengerBookings = new ArrayList<>();
+
 }
