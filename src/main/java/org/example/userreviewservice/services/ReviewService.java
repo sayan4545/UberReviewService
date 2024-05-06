@@ -94,20 +94,38 @@ public class ReviewService implements CommandLineRunner {
 //        if(b.isPresent()){
 //            bookingRepository.delete(b.get());
 //        }
-
-
         //repositories.save(r);
-
         //bookingRepository.save(b);
-        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1l,"WB6798XC");
-        if(driver.isPresent()){
-            System.out.println(driver.get().getDriverName()+ " "+ driver.get().getLicenseNumber());
-            List<Booking> bookings = bookingRepository.findAllByDriverId(1l);
-            for(Booking booking:bookings){
-                System.out.println(booking.getBookingStatus());
-            }
+//        Optional<Driver> driver = driverRepository.findById(1l);
+//        if(driver.isPresent()){
+//            System.out.println(driver.get().getDriverName()+ " "+ driver.get().getLicenseNumber());
+////            List<Booking> bookings = bookingRepository.findAllByDriverId(1l);
+////            for(Booking booking:bookings){
+////                System.out.println(booking.getBookingStatus());
+////            }
+//        }
+//        Optional<Booking> booking = bookingRepository.findById(1l);
+//        if(booking.isPresent()){
+//            List<Booking> bookings = bookingRepository.findAll();
+//            if(bookings.size()>0){
+//                System.out.println(bookings);
+//            }
+//        }
+//        Optional<Driver> driver= driverRepository.findById(1l);
+//        if(driver.isPresent()){
+//            System.out.println(driver.get().getDriverName());
+//            List<Booking> b = driver.get().getBookings();
+//            for(Booking bookings :b){
+//                System.out.println(bookings.getBookingStatus());
+//            }
+//
+//        }
+        Optional<Driver> driver = driverRepository.rawFindByIdAndLicenseNumber(2L,"DL6798XC");
+        System.out.println(driver.get().getDriverName());
+
+        Optional<Driver> driver2 = driverRepository.hqlFindByIdAndName(1l,"Sayan Chatterjee");
+        if(driver2.isPresent()){
+            System.out.println(driver2.get().getLicenseNumber());
         }
-
-
     }
 }
