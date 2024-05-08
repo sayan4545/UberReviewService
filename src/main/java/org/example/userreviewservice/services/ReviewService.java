@@ -5,10 +5,8 @@ import org.example.userreviewservice.repositories.DriverRepository;
 import org.example.userreviewservice.repositories.ReviewRepositories;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 public class ReviewService implements CommandLineRunner {
@@ -120,12 +118,28 @@ public class ReviewService implements CommandLineRunner {
 //            }
 //
 //        }
-        Optional<Driver> driver = driverRepository.rawFindByIdAndLicenseNumber(2L,"DL6798XC");
-        System.out.println(driver.get().getDriverName());
+//        Optional<Driver> driver = driverRepository.rawFindByIdAndLicenseNumber(2L,"DL6798XC");
+//        System.out.println(driver.get().getDriverName());
+//
+//        Optional<Driver> driver2 = driverRepository.hqlFindByIdAndName(1l,"Sayan Chatterjee");
+//        if(driver2.isPresent()){
+//            System.out.println(driver2.get().getLicenseNumber());
+//        }
+//        List<Long> driverIds = Arrays.asList(1l,2l);
+//        List<Driver> drivers = driverRepository.findAllById(driverIds);
+//
+//        for (Driver driver : drivers) {
+//            driver.getBookings();
+//        }
+        List<Long> driverIds = Arrays.asList(1l,2l,3l,4l);
+        List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
 
-        Optional<Driver> driver2 = driverRepository.hqlFindByIdAndName(1l,"Sayan Chatterjee");
-        if(driver2.isPresent()){
-            System.out.println(driver2.get().getLicenseNumber());
+        for(Driver driver:drivers){
+            List<Booking> bookings = driver.getBookings();
+            bookings.forEach(booking -> System.out.println(booking.getId()));
         }
+
+
+
     }
 }

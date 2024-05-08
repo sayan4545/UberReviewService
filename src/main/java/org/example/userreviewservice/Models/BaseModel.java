@@ -8,12 +8,14 @@ import java.util.Date;
 
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+@Getter
+@Setter
 
 public abstract class BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

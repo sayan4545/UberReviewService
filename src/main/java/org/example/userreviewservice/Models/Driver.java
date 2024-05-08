@@ -22,4 +22,5 @@ public class Driver extends BaseModel{
 
     @OneToMany(mappedBy = "driver",fetch = FetchType.LAZY)
     private List<Booking> bookings = new ArrayList<>();
+
 }
