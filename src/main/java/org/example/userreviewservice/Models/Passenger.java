@@ -1,6 +1,7 @@
 package org.example.userreviewservice.Models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 

@@ -1,4 +1,5 @@
 package org.example.userreviewservice.services;
+import jakarta.transaction.Transactional;
 import org.example.userreviewservice.Models.*;
 import org.example.userreviewservice.repositories.BookingRepository;
 import org.example.userreviewservice.repositories.DriverRepository;
@@ -19,8 +20,9 @@ public class ReviewService implements CommandLineRunner {
         this.driverRepository = driverRepository;
     }
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
-        System.out.println("STARTED SUCCESSFULLY");
+        System.out.println("*************************");
 
 //        Review r = Review.builder()
 //                .rating(4.0)
@@ -134,12 +136,11 @@ public class ReviewService implements CommandLineRunner {
         List<Long> driverIds = Arrays.asList(1l,2l,3l,4l);
         List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
 
+       // List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers);
+
         for(Driver driver:drivers){
             List<Booking> bookings = driver.getBookings();
             bookings.forEach(booking -> System.out.println(booking.getId()));
         }
-
-
-
     }
 }
