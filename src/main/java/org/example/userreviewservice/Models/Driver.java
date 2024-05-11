@@ -17,6 +17,8 @@ import java.util.Set;
 @Builder
 public class Driver extends BaseModel{
 
+    private String phoneNumber;
+
     @Column(nullable = false)
     private String driverName;
 
