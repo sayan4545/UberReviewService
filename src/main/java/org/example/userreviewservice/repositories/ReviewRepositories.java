@@ -20,12 +20,6 @@ public interface ReviewRepositories extends JpaRepository<Review,Long> {
     List<Review> findAllByCreatedAtBefore(Date date);
     @Query(nativeQuery = true,value = "select * from booking b inner join uber_db_local.booking_review br on b.review_id = br.id where b.id=:bookingId")
     Review findByBookingId(Long bookingId);
-
-
-
-
-
-
 }
 class Custom{
     public Driver driver;
