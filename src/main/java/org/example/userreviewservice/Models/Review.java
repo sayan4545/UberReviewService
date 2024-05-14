@@ -15,6 +15,10 @@ import java.util.Date;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Review extends BaseModel {
+    @OneToOne(cascade = {
+            CascadeType.ALL
+    })
+    private Booking booking;
     @Column(nullable =false)
     private String Content;
     private Double rating;

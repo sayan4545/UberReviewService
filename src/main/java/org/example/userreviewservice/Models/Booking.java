@@ -11,11 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking extends BaseModel{
-    @OneToOne(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.REMOVE
-    },fetch = FetchType.LAZY)
-    private Review review;
+
     @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
     private Date startTime;
