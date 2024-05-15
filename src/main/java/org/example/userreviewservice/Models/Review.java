@@ -17,7 +17,7 @@ import java.util.Date;
 public class Review extends BaseModel {
     @OneToOne(cascade = {
             CascadeType.ALL
-    })
+    },fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Booking booking;
     @Column(nullable =false)

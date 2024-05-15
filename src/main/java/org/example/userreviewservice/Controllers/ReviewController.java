@@ -1,6 +1,8 @@
 package org.example.userreviewservice.Controllers;
 
+import jakarta.transaction.Transactional;
 import org.example.userreviewservice.Dtos.CreateReviewDto;
+import org.example.userreviewservice.Dtos.ReviewDto;
 import org.example.userreviewservice.Models.Review;
 import org.example.userreviewservice.adapters.CreateReviewDtoToReviewAdapter;
 import org.example.userreviewservice.services.ReviewService;
@@ -22,13 +24,22 @@ public class ReviewController {
     }
 
     @PostMapping
+    @Transactional()
     public ResponseEntity<?> publishReview(@RequestBody CreateReviewDto request) {
         Review incomingReview = this.createReviewDtoToReviewAdapter.convertDtoToReview(request);
         if(incomingReview==null){
             return new ResponseEntity<>("Invalid arguments",HttpStatus.BAD_REQUEST);
         }
         Review review = this.reviewService.publishReview(incomingReview);
-        return new ResponseEntity<>(review, HttpStatus.CREATED);
+        ReviewDto response = ReviewDto.builder()
+                .id(review.getId())
+                .content(review.getContent())
+                .rating(review.getRating())
+                .Booking(review.getBooking().getId())
+                .createdAt(review.getCreatedAt())
+                .updatedAt(review.getUpdatedAt())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews() {
