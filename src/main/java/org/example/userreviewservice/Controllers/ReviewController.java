@@ -1,6 +1,8 @@
 package org.example.userreviewservice.Controllers;
 
+import org.example.userreviewservice.Dtos.CreateReviewDto;
 import org.example.userreviewservice.Models.Review;
+import org.example.userreviewservice.adapters.CreateReviewDtoToReviewAdapter;
 import org.example.userreviewservice.services.ReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +15,19 @@ import java.util.Optional;
 @RequestMapping("/api/v1/reviews")
 public class ReviewController {
     private ReviewService reviewService;
-    public ReviewController(ReviewService reviewService) {
+    private CreateReviewDtoToReviewAdapter createReviewDtoToReviewAdapter;
+    public ReviewController(ReviewService reviewService,CreateReviewDtoToReviewAdapter createReviewDtoToReviewAdapter) {
         this.reviewService = reviewService;
+        this.createReviewDtoToReviewAdapter = createReviewDtoToReviewAdapter;
     }
 
     @PostMapping
-    public ResponseEntity<Review> publishReview(@RequestBody Review request) {
-        Review review = this.reviewService.publishReview(request);
+    public ResponseEntity<?> publishReview(@RequestBody CreateReviewDto request) {
+        Review incomingReview = this.createReviewDtoToReviewAdapter.convertDtoToReview(request);
+        if(incomingReview==null){
+            return new ResponseEntity<>("Invalid arguments",HttpStatus.BAD_REQUEST);
+        }
+        Review review = this.reviewService.publishReview(incomingReview);
         return new ResponseEntity<>(review, HttpStatus.CREATED);
     }
     @GetMapping
