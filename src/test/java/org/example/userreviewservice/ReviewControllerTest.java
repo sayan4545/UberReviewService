@@ -1,5 +1,4 @@
 package org.example.userreviewservice;
-
 import org.example.userreviewservice.Controllers.ReviewController;
 import org.example.userreviewservice.Models.Review;
 import org.example.userreviewservice.adapters.CreateReviewDtoToReviewAdapter;
@@ -14,8 +13,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -43,5 +42,15 @@ public class ReviewControllerTest {
         assertEquals(HttpStatus.OK,response.getStatusCode());
         Optional<Review> reviewReturned = (Optional<Review>) response.getBody();
         assertEquals(reviewId,reviewReturned.get().getId());
+    }
+    @Test
+    public void testGetAllReviewsSuccess(){
+        Review mockReview = Review.builder().build();
+        when(reviewService.findAllReviews()).thenReturn(List.of(mockReview));
+        ResponseEntity<?> response = reviewController.getAllReviews();
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        List<Review> reviewReturned = (List<Review>) response.getBody();
+        assertEquals(1,reviewReturned.size());
+
     }
 }
