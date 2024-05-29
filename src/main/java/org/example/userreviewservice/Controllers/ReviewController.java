@@ -69,7 +69,7 @@ public class ReviewController {
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
     @GetMapping("/{reviewId}")
-    public ResponseEntity<?> getReview(@PathVariable long reviewId) {
+    public ResponseEntity<?> findReviewById(@PathVariable long reviewId) {
         try{
             Optional<Review> review = this.reviewService.findReviewById(reviewId);
             return new ResponseEntity<>(review, HttpStatus.OK);
