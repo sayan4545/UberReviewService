@@ -26,5 +26,4 @@ public abstract class BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     protected Date updatedAt;
-
 }
